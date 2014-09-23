@@ -91,6 +91,20 @@ fe36d443... 192.168.12.228  role=kubernetes
 
 Notice all the "worker" machines have the `role=kubernetes` metadata field.
 
+## Modify and Deploy the Kubernetes Service Files
+Modify the [service unit files](https://github.com/kelseyhightower/kubernetes-fleet-tutorial/tree/master/units) on your local desktop to have your etcd server's IP address if you are using a value other than 192.168.12.10.
+> Not all of the files need to be edited.
+
+From your desktop machine, use the **fleetctl submit** command to register each of the unit files.
+```
+$ fleetctl submit kube-proxy.service
+$ fleetctl submit kube-kubelet.service
+$ fleetctl submit kube-apiserver.service
+$ fleetctl submit kube-controller-manager.service
+$ fleetctl submit kube-register.service
+$ fleetctl submit kube-scheduler.service
+```
+
 ## Deploying Kubernetes with Fleet
 
 Two of the Kubernetes components, the Kubelet and Proxy service, must run on every Kubernetes machine. Fleet can ensure this happens using [global units](https://github.com/coreos/fleet/blob/master/Documentation/unit-files-and-scheduling.md#unit-scheduling) and metadata filtering. The following unit files will run on every CoreOS machine where `role=kubernetes`:
