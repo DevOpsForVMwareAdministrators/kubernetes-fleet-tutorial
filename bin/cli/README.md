@@ -1,4 +1,4 @@
-**etcdctl** - Mac Users can obtain etcdctl from homebrew.  Otherwise, you can build the binary using directions found at the CoreOS [etcdctl](https://github.com/coreos/etcdctl/) Repository.
+**etcdctl** - Latest binaries can be downloaded from the CoreOS [etcdctl](https://github.com/coreos/etcdctl/releases) Repository.  Alternatively, etcdctl can be installed via homebrew on Macs.
 
 **fleetctl** - Latest binaries can be downloaded from the CoreOS [Fleet](https://github.com/coreos/fleet/releases) Repository.  The fleetctl version in this folder is verified to run the example cluster in the book properly.
 
