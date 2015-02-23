@@ -1,0 +1,22 @@
+{
+  "id": "mysql-server-id",
+  "kind": "Pod",
+  "apiVersion": "v1beta1",
+  "desiredState": {
+    "manifest": {
+      "version": "v1beta1",
+      "id": "mysql-server-id",
+      "containers": [{
+        "name": "database",
+        "image": "dockerfile/mysql",
+        "ports": [{
+          "containerPort": 3306,
+          "hostPort": 3306
+        }]
+      }]
+    }
+  },
+  "labels": {
+    "name": "mysql-server"
+  }
+}

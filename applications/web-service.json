@@ -1,0 +1,14 @@
+{
+  "id": "webserver",
+  "kind": "Service",
+  "apiVersion": "v1beta1",
+  "port": 10080,
+  "containerPort": 80,
+  "labels": {
+  	"name": "web-server"
+
+  },
+  "selector": {
+    "name": "web-server"
+  }
+}

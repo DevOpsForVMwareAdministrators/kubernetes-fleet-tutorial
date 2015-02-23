@@ -1,0 +1,28 @@
+{
+  "id": "web-server-id",
+  "kind": "ReplicationController",
+  "apiVersion": "v1beta1",
+  "desiredState": {
+    "replicas": 2,
+    "replicaSelector": {"name": "web-server"},
+    "podTemplate": {
+      "desiredState": {
+         "manifest": {
+           "version": "v1beta1",
+           "id": "web-server-id",
+           "containers": [{
+             "name": "web",
+             "image": "vmtrooper/web-app",
+             "ports": [{
+               "containerPort": 80,
+               "hostPort": 80}]
+           }]
+         }
+      },
+      "labels": {"name":"web-server"}
+    }
+  },
+  "labels": {
+    "name": "web-server"
+  }
+}
