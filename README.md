@@ -30,7 +30,7 @@ Install the following command line utilities so you can interact with the cluste
 
 * [etcdctl](https://github.com/coreos/etcdctl)
 * [fleetctl](https://github.com/coreos/fleet)
-* [kubecfg](https://github.com/GoogleCloudPlatform/kubernetes)
+* [kubectl](https://github.com/GoogleCloudPlatform/kubernetes)
 
 ## Setup a Dedicated etcd Cluster
 
@@ -100,7 +100,7 @@ $ fleetctl start kube-proxy.service
 $ fleetctl start kube-kubelet.service
 ```
 
-The other Kubernetes components make up the Kubernetes Master and only require a single instance to be running. The Kubernetes Master can run anywhere in the cluster, but we'll need to locate the IP address of the Kubernetes API server once it's up and running so we can configure the kubecfg Kubernetes client. 
+The other Kubernetes components make up the Kubernetes Master and only require a single instance to be running. The Kubernetes Master can run anywhere in the cluster, but we'll need to locate the IP address of the Kubernetes API server once it's up and running so we can configure the kubectl Kubernetes client. 
 
 ```
 $ fleetctl start kube-apiserver.service
@@ -122,7 +122,7 @@ kube-proxy.service              fe36d443.../192.168.12.228  active  running
 kube-scheduler.service          a6681f2c.../192.168.12.229  active  running
 ```
 
-Once you've located the kube-apiserver set the KUBERNETES_MASTER environment variable, which configures the kubecfg client use this API server:
+Once you've located the kube-apiserver set the KUBERNETES_MASTER environment variable, which configures the kubectl client use this API server:
 
 ```
 $ export KUBERNETES_MASTER="http://192.168.12.229:8080"
@@ -151,17 +151,16 @@ MachineOf=kube-apiserver.service
 
 This will ensure the registration service will "follow" the Kubernetes API service around the cluster.
 
-You can now list the registered Kubernetes Kubelets using the kubecfg client:
+You can now list the registered Kubernetes Kubelets using the kubectl client:
 
 ```
-$ kubecfg list /minions
-Minion identifier
-----------
-192.168.12.228
-192.168.12.229
+$ kubectl get minions
+NAME                LABELS              STATUS
+172.16.171.128      <none>              Unknown
+172.16.171.133      <none>              Unknown
 ```
 
-At this point you are ready to launch pods using the kubecfg command tool, or the Kubernetes API.
+At this point you are ready to launch pods using the kubectl command tool, or the Kubernetes API.
 
 ## Adding and removing machines
 
